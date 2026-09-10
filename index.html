@@ -1,7 +1,60 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LaTale Boss Tracker</title><link rel="stylesheet" href="assets/styles.css"></head><body>
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="#loot"><span class="brand-mark">LT</span><span><strong>LaTale Boss Tracker</strong><small>Loot Database · Title Tracker</small></span></a><nav class="nav-tabs"><button class="nav-tab active" data-view="loot">Loot Database</button><button class="nav-tab" data-view="titles">Title Tracker</button></nav></div></header>
-<main class="shell"><section id="loot-view" class="view"><div class="hero"><div><p class="eyebrow">DUNGEON DATABASE</p><h1>Boss Loot</h1><p class="muted">Browse dungeon drops, Codex entries, and title materials.</p></div><div class="stat-card"><span id="dungeon-count">0</span><small>dungeons</small></div></div>
-<div class="toolbar"><label class="search">⌕ <input id="loot-search" type="search" placeholder="Search dungeons or loot…"></label><select id="level-filter"></select><select id="tag-filter"><option value="all">All loot</option><option value="both">Codex + Title</option><option value="codex">Codex only</option><option value="title">Title material</option></select></div><div id="loot-list" class="dungeon-list"></div><div id="loot-empty" class="empty hidden">No dungeons match your filters.</div></section>
-<section id="titles-view" class="view hidden"><div class="hero"><div><p class="eyebrow">PROGRESS TRACKER</p><h1>Title Tracker</h1><p class="muted">Enter what you currently own. Progress is saved in this browser.</p></div><div class="stat-card"><span id="title-count">0</span><small>titles</small></div></div>
-<div class="tracker-toolbar"><label class="search">⌕ <input id="title-search" type="search" placeholder="Search titles, dungeons, or materials…"></label><button id="reset-progress" class="button ghost">Reset saved progress</button></div><div id="title-list" class="title-list"></div><div id="title-empty" class="empty hidden">No titles match your search.</div></section></main>
-<footer class="shell footer"><span>Initial data snapshot from LT Boss Matts Tracker.xlsx</span><span>GitHub Pages ready · browser-saved progress</span></footer><script src="assets/data.js"></script><script src="assets/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>LaTale Boss Material Register</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top" aria-label="LaTale Boss Material Register home">
+        <span class="brand-mark">LT</span>
+        <span>
+          <strong>Boss Material Register</strong>
+          <small>LaTale dungeon drops · Codex · Titles</small>
+        </span>
+      </a>
+      <span id="result-count" class="result-count">0 dungeons</span>
+    </div>
+  </header>
+
+  <main id="top" class="shell page">
+    <section class="filter-panel" aria-label="Dungeon filters">
+      <div class="filter-top">
+        <label class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search" type="search" autocomplete="off" placeholder="Search dungeon or item…">
+        </label>
+        <button id="clear-filters" class="small-button" type="button">Reset</button>
+      </div>
+
+      <div class="range-row" id="range-filters">
+        <label class="range-chip all-chip"><input type="checkbox" value="all" checked><span>All</span></label>
+        <label class="range-chip"><input type="checkbox" value="lv-1-199"><span>Lv. 1 ~ 199</span></label>
+        <label class="range-chip"><input type="checkbox" value="lv-200-235"><span>Lv. 200 ~ 235</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-1-1000"><span>ULv. 1 ~ ULv. 1000</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-1300-3500"><span>ULv. 1300 ~ ULv. 3500</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-3700-8000"><span>ULv. 3700 ~ ULv. 8000</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-8300-9999"><span>ULv. 8300 ~ ULv. 9999</span></label>
+        <label class="range-chip"><input type="checkbox" value="slv-1-plus"><span>SLv. 1 ~</span></label>
+      </div>
+
+      <div class="legend" aria-label="Item labels">
+        <span><i class="dot codex-dot"></i>Codex ✓</span>
+        <span><i class="dot title-dot"></i>Title ✓</span>
+        <span class="legend-note">Select multiple level ranges to combine them.</span>
+      </div>
+    </section>
+
+    <section id="dungeon-grid" class="dungeon-grid" aria-live="polite"></section>
+    <div id="empty-state" class="empty-state hidden">No dungeons match the current filters.</div>
+  </main>
+
+  <footer class="shell footer">Data snapshot from LT Boss Matts Tracker · Filters run entirely in your browser.</footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
