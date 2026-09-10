@@ -132,7 +132,11 @@
     });
 
     $("dungeon-grid").innerHTML = visible.map((dungeon) => {
-      const items = dungeon.items || [];
+      const items = [...(dungeon.items || [])].sort((a, b) => {
+        const aSpecial = Boolean(a.codex || a.titleMaterial);
+        const bSpecial = Boolean(b.codex || b.titleMaterial);
+        return Number(bSpecial) - Number(aSpecial);
+      });
       const itemHtml = items.length ? items.map((item) => {
         const flags = [
           item.codex ? '<span class="flag codex" title="Can be registered in Codex">Codex ✓</span>' : "",
