@@ -1418,3 +1418,65 @@ html:not([data-theme="light"]) .monster-progress {
   color:#aab7ca !important;
   opacity:1 !important;
 }
+
+/* v13.9.4.32b — make every Dungeon summary label/count/title use one neutral color */
+html[data-theme="light"]{
+  --dungeon-summary-text:#607086;
+}
+html:not([data-theme="light"]){
+  --dungeon-summary-text:#aab7ca;
+}
+
+/* Overall Progress: label + DONE + fraction */
+.dungeon-overall-progress,
+.dungeon-overall-progress > span,
+.dungeon-overall-progress strong,
+.dungeon-overall-progress .overall-progress-count,
+.dungeon-overall-progress .overall-progress-count strong {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
+}
+
+/* Monster Illustration summary: label + total + DONE + fraction */
+.monster-summary,
+.monster-summary > span,
+.monster-summary strong,
+.monster-summary .summary-progress,
+.monster-summary-progress,
+.monster-progress {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
+}
+
+/* Item Codex summary: Equipment/Event/ETC/Other labels + all numbers + DONE */
+.dungeon-summary,
+.dungeon-summary > span,
+.dungeon-summary span,
+.dungeon-summary strong,
+.dungeon-summary .summary-progress,
+.dungeon-summary .summary-progress strong {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
+}
+
+/* Title summary: TITLE + count + titlebook names */
+.title-summary-row,
+.title-summary-row > span,
+.title-summary-row span,
+.title-summary-row strong,
+.title-summary-row .title-summary-label,
+.title-summary-row .title-summary-names,
+.title-summary-row .summary-progress {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
+}
+
+/* Expanded structural headings use the same neutral too. */
+.monster-illustration-head,
+.monster-illustration-head strong,
+.item-column-head,
+.dungeon-conquest-placeholder-head,
+.dungeon-conquest-placeholder-head strong {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
+}
