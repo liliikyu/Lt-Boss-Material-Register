@@ -1387,3 +1387,34 @@ html:not([data-theme="light"]) .title-summary-row strong,
 html:not([data-theme="light"]) .dungeon-conquest-placeholder-head strong {
   color:#aab7ca !important;
 }
+
+/* v13.9.4.32 — unify Dungeon summary numbers and DONE counters with heading labels */
+html[data-theme="light"] .dungeon-overall-progress,
+html[data-theme="light"] .dungeon-overall-progress .overall-progress-count,
+html[data-theme="light"] .dungeon-overall-progress .overall-progress-count strong,
+html[data-theme="light"] .dungeon-summary,
+html[data-theme="light"] .dungeon-summary span,
+html[data-theme="light"] .dungeon-summary .summary-progress,
+html[data-theme="light"] .monster-summary,
+html[data-theme="light"] .monster-summary span,
+html[data-theme="light"] .monster-summary .summary-progress,
+html[data-theme="light"] .monster-summary-progress,
+html[data-theme="light"] .monster-progress {
+  color:#607086 !important;
+  opacity:1 !important;
+}
+
+html:not([data-theme="light"]) .dungeon-overall-progress,
+html:not([data-theme="light"]) .dungeon-overall-progress .overall-progress-count,
+html:not([data-theme="light"]) .dungeon-overall-progress .overall-progress-count strong,
+html:not([data-theme="light"]) .dungeon-summary,
+html:not([data-theme="light"]) .dungeon-summary span,
+html:not([data-theme="light"]) .dungeon-summary .summary-progress,
+html:not([data-theme="light"]) .monster-summary,
+html:not([data-theme="light"]) .monster-summary span,
+html:not([data-theme="light"]) .monster-summary .summary-progress,
+html:not([data-theme="light"]) .monster-summary-progress,
+html:not([data-theme="light"]) .monster-progress {
+  color:#aab7ca !important;
+  opacity:1 !important;
+}
