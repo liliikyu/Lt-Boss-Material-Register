@@ -1,0 +1,38 @@
+name: Sync Monster Illustrations
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily at 03:37 UTC. The script commits only when the wiki list changes.
+    - cron: "37 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh Monster Illustrations from Official La Tale Wiki
+        run: python scripts/sync_monster_illustrations.py
+
+      - name: Commit changed Monster Illustration data
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/monster-illustrations.js; then
+            echo "No Monster Illustration changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/monster-illustrations.js
+          git commit -m "Sync Monster Illustrations from La Tale Wiki"
+          git push
