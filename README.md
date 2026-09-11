@@ -101,3 +101,7 @@ Data snapshot source: https://latale.wiki.gg/wiki/Monster_Illustrations
 - `titles.html` — title tracker
 
 GitHub Pages will open the tutorial first at the repository root.
+
+
+## v13.9.4.11
+Full bundle preserves the rowspan-aware Monster Illustration sync and includes current Forgotten Garden and Ymir Institute mappings. The Monster Illustration workflow also refreshes when its sync script/workflow is updated.
