@@ -1351,3 +1351,13 @@ html[data-theme="light"] .field-card .monster-summary{background:color-mix(in sr
 .conquest-preview-source a{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border:1px solid var(--accent);border-radius:8px;color:var(--accent);text-decoration:none;font-weight:800;}
 .conquest-preview-source a:hover{background:color-mix(in srgb,var(--panel-2) 86%,var(--accent) 14%);}
 @media (max-width:760px){.conquest-preview-hero,.conquest-preview-content{padding:16px}.conquest-preview-hero h1{font-size:22px}}
+
+/* v13.9.4.32-style patch — unify Dungeon structural heading colors */
+.dungeon-summary strong,
+.monster-summary strong,
+.monster-illustration-head strong,
+.item-column-head,
+.title-summary-row strong,
+.dungeon-conquest-placeholder-head strong {
+  color: #aab7ca !important;
+}
