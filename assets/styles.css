@@ -1361,3 +1361,29 @@ html[data-theme="light"] .field-card .monster-summary{background:color-mix(in sr
 .dungeon-conquest-placeholder-head strong {
   color: #aab7ca !important;
 }
+/* v13.9.4.32 final heading consistency patch */
+.dungeon-overall-progress > span:first-child strong,
+.dungeon-summary strong,
+.monster-summary strong,
+.monster-illustration-head strong,
+.item-column-head,
+.title-summary-row strong,
+.dungeon-conquest-placeholder-head strong {
+  color:#607086 !important;
+  font-size:10.5px !important;
+  font-weight:800 !important;
+  letter-spacing:.035em !important;
+  text-transform:uppercase !important;
+  opacity:1 !important;
+}
+
+/* Dark theme keeps the same hierarchy with the darker-theme neutral. */
+html:not([data-theme="light"]) .dungeon-overall-progress > span:first-child strong,
+html:not([data-theme="light"]) .dungeon-summary strong,
+html:not([data-theme="light"]) .monster-summary strong,
+html:not([data-theme="light"]) .monster-illustration-head strong,
+html:not([data-theme="light"]) .item-column-head,
+html:not([data-theme="light"]) .title-summary-row strong,
+html:not([data-theme="light"]) .dungeon-conquest-placeholder-head strong {
+  color:#aab7ca !important;
+}
