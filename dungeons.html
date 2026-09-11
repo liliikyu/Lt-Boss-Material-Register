@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=13.9.4.18">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=13.9.4.18">
+  <title>LaTale Dungeon Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css?v=13.9.4.18">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="dungeons.html" aria-label="LaTale Dungeon Tracker home">
+        <span class="brand-mark"><img src="assets/favicon-purple.png?v=13.9.4.18" alt="" aria-hidden="true"></span>
+        <span>
+          <strong>Dungeon Tracker</strong>
+          <small>Monster Illustrations · Codex · Titles</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Site sections">
+        <a class="site-nav-link" href="fields.html">Fields</a>
+        <a class="site-nav-link active" href="dungeons.html">Dungeons</a>
+        <a class="site-nav-link" href="titles.html">Titles</a>
+        <a class="site-nav-link" href="https://latale.wiki.gg/wiki/Illustration_Book" target="_blank" rel="noopener noreferrer">Wiki</a>
+      </nav>
+      <div class="topbar-actions">
+        <span id="result-count" class="result-count">0 dungeons</span>
+        <button id="help-toggle" class="icon-button help-button" type="button" aria-label="Open tracker guide" title="Guide / Help">?</button>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Theme: System. Click to switch theme." title="Theme: System">◐</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="shell page">
+    <section class="filter-panel" aria-label="Dungeon filters">
+      <div class="filter-top">
+        <label class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search" type="search" autocomplete="off" placeholder="Search dungeon or item…">
+        </label>
+        <button id="expand-all" class="small-button" type="button">Expand All</button>
+        <button id="clear-filters" class="small-button" type="button">Reset</button>
+      </div>
+
+      <div class="range-row" id="range-filters">
+        <label class="range-chip all-chip"><input type="checkbox" value="all" checked><span>All</span></label>
+        <label class="range-chip"><input type="checkbox" value="lv-1-199"><span>Lv. 1 ~ 199</span></label>
+        <label class="range-chip"><input type="checkbox" value="lv-200-235"><span>Lv. 200 ~ 235</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-1-1000"><span>ULv. 1 ~ ULv. 1000</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-1300-3500"><span>ULv. 1300 ~ ULv. 3500</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-3700-8000"><span>ULv. 3700 ~ ULv. 8000</span></label>
+        <label class="range-chip"><input type="checkbox" value="ulv-8300-9999"><span>ULv. 8300 ~ ULv. 9999</span></label>
+        <label class="range-chip"><input type="checkbox" value="slv-1-plus"><span>SLv. 1 ~</span></label>
+      </div>
+
+      <div class="legend" aria-label="Item labels">
+        <span><i class="dot codex-dot"></i>Codex</span>
+        <span><i class="dot title-dot"></i>Title</span>
+        <span><i class="dot badge5-dot"></i>Badge 5</span>
+        <span class="legend-note">Select multiple level ranges to combine them.</span>
+      </div>
+    </section>
+
+    <section id="dungeon-grid" class="dungeon-grid" aria-live="polite"></section>
+    <div id="empty-state" class="empty-state hidden">No dungeons match the current filters.</div>
+  </main>
+
+  <div id="welcome-overlay" class="welcome-overlay hidden" aria-hidden="true">
+    <section id="welcome-popup" class="welcome-popup" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+      <div class="welcome-popup-head">
+        <div>
+          <span class="tutorial-kicker">WELCOME</span>
+          <h1 id="welcome-title">LaTale Dungeon Tracker</h1>
+          <p>Track Field and Dungeon Monster Illustrations, Codex items, title materials, and completion progress in one place.</p>
+        </div>
+        <button id="welcome-close" class="icon-button welcome-close" type="button" aria-label="Close guide" title="Close guide">×</button>
+      </div>
+      <div class="welcome-guide-grid" aria-label="How to use the tracker">
+        <article class="welcome-guide-card"><span class="tutorial-step">01</span><h2>Fields</h2><p>Browse on-field locations with their Monster Illustrations and Item Codex entries grouped together. Field progress is tracked separately from Dungeon progress.</p></article>
+        <article class="welcome-guide-card"><span class="tutorial-step">02</span><h2>Dungeons</h2><p>Search or filter dungeons, then expand a card to track Monster Illustrations, Codex-registerable items, titles, and overall completion.</p></article>
+        <article class="welcome-guide-card"><span class="tutorial-step">03</span><h2>Titles</h2><p>Track title materials, Ely or reputation requirements, title sets, coupon eligibility, and completed titlebooks.</p></article>
+        <article class="welcome-guide-card"><span class="tutorial-step">04</span><h2>Saved locally</h2><p>Your completion progress is stored in this browser. Fields and Dungeons use separate completion states even when a monster or item name matches.</p></article>
+      </div>
+      <div class="welcome-disclaimer">
+        <strong>Disclaimer</strong>
+        <p>This is an unofficial community tracker and is not affiliated with or endorsed by Actoz Soft, Papaya Play, or the LaTale development team. In-game information and official notices remain authoritative.</p>
+        <p>Dungeon and title data is synchronized from the project Google Sheet. Field and Dungeon Illustration Book data is sourced from the Official La Tale Wiki.</p>
+        <p>The Codex system is being revamped in the upcoming major update <a href="https://www.latale.com/news/notice/view/3705?category=3&amp;page=1" target="_blank" rel="noopener noreferrer"><strong><em>SHINING</em></strong></a>.</p>
+      </div>
+    </section>
+  </div>
+
+  <aside id="progress-panel" class="dungeon-progress-panel floating-progress-panel hidden" aria-label="Illustration Book progress">
+    <div class="dungeon-progress-head progress-panel-title">
+      <div>
+        <strong>Illustration Book Progress</strong>
+        <span>Item Codex and Monster Illustration completion</span>
+      </div>
+    </div>
+
+    <section class="progress-section monster-progress-section" aria-labelledby="monster-progress-heading">
+      <div class="progress-section-head">
+        <div>
+          <strong id="monster-progress-heading">Monster Illustrations</strong>
+          <span>Illustrations listed for tracked dungeons</span>
+        </div>
+        <span id="monster-progress-total" class="progress-total"></span>
+      </div>
+    </section>
+
+    <section class="progress-section codex-progress-section" aria-labelledby="codex-progress-heading">
+      <div class="progress-section-head">
+        <div>
+          <strong id="codex-progress-heading">Item Codex</strong>
+          <span>Codex-registerable items across all dungeons</span>
+        </div>
+        <span id="progress-total" class="progress-total"></span>
+      </div>
+      <div class="codex-disclaimer">
+        <strong>Disclaimer:</strong> Codex system is being revamped in the upcoming major update <a href="https://www.latale.com/news/notice/view/3705?category=3&amp;page=1" target="_blank" rel="noopener noreferrer"><strong><em>SHINING</em></strong></a>.
+      </div>
+      <div class="dungeon-progress-table-wrap">
+        <table class="dungeon-progress-table">
+          <thead><tr><th>Category</th><th>Total</th><th>Done</th><th>Left</th></tr></thead>
+          <tbody id="progress-summary-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="floating-progress-actions split-progress-actions">
+      <button id="clear-monster-progress" class="small-button danger-button" type="button">Clear Illustrations</button>
+      <button id="clear-progress" class="small-button danger-button" type="button">Clear Codex</button>
+    </div>
+  </aside>
+  <button id="progress-toggle" class="codex-fab codex-image-toggle" type="button" aria-expanded="false" aria-controls="progress-panel" aria-label="Open Codex Progress" title="Codex Progress">
+    <img id="codex-toggle-image" src="assets/codex-before.webp?v=13.3" data-closed-src="assets/codex-before.webp?v=13.3" data-open-src="assets/codex-after.webp?v=13.3" alt="" aria-hidden="true"><span class="codex-fallback" aria-hidden="true">Codex</span>
+  </button>
+
+  <footer class="shell footer">Data synced from LT Boss Matts Tracker · Last synced: <time id="last-sync" datetime="">Not available</time> · Build v13.9.4.18 · Filters run entirely in your browser.</footer>
+  <script src="assets/data.js?v=13.9.4.11"></script>
+  <script>
+    // Monster Illustration data changes independently via GitHub Actions.
+    // Use a fresh URL each page load so browser caching cannot hide new wiki data.
+    (() => {
+      const monsterScript = document.createElement("script");
+      monsterScript.src = `assets/monster-illustrations.js?ts=${Date.now()}`;
+      monsterScript.onload = () => {
+        const appScript = document.createElement("script");
+        appScript.src = "assets/app.js?v=13.9.4.18";
+        document.body.appendChild(appScript);
+      };
+      monsterScript.onerror = () => {
+        console.error("Monster Illustration data failed to load.");
+        const appScript = document.createElement("script");
+        appScript.src = "assets/app.js?v=13.9.4.18";
+        document.body.appendChild(appScript);
+      };
+      document.body.appendChild(monsterScript);
+    })();
+  </script>
+</body>
+</html>

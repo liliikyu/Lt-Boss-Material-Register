@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=13.9.4.18">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=13.9.4.18">
+  <title>LaTale Title Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css?v=13.9.4.18">
+</head>
+<body class="title-tracker-page">
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="dungeons.html" aria-label="LaTale Dungeon Tracker home">
+        <span class="brand-mark"><img src="assets/favicon-purple.png?v=13.9.4.18" alt="" aria-hidden="true"></span>
+        <span><strong>Dungeon Tracker</strong><small>Monster Illustrations · Codex · Titles</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Site sections">
+        <a class="site-nav-link" href="fields.html">Fields</a>
+        <a class="site-nav-link" href="dungeons.html">Dungeons</a>
+        <a class="site-nav-link active" href="titles.html">Titles</a>
+        <a class="site-nav-link" href="https://latale.wiki.gg/wiki/Illustration_Book" target="_blank" rel="noopener noreferrer">Wiki</a>
+      </nav>
+      <div class="topbar-actions">
+        <span id="result-count" class="result-count">0 titles</span>
+        <button id="help-toggle" class="icon-button help-button" type="button" aria-label="Open tracker guide" title="Guide / Help">?</button>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Theme: System. Click to switch theme." title="Theme: System">◐</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell page title-page">
+    <section class="filter-panel title-filter-panel" aria-label="Title filters">
+      <div class="filter-top">
+        <label class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="title-search" type="search" autocomplete="off" placeholder="Search title, dungeon, material or title set…">
+        </label>
+        <select id="title-status" class="compact-select" aria-label="Completion filter">
+          <option value="all">All titles</option>
+          <option value="incomplete">Incomplete</option>
+          <option value="complete">Complete</option>
+        </select>
+        <button id="reset-title-progress" class="small-button danger-button" type="button">Clear Progress</button>
+      </div>
+      <div class="title-progress-strip">
+        <span><strong id="title-complete-count">0</strong> complete</span>
+        <span><strong id="title-total-count">0</strong> total</span>
+        <span class="title-progress-track" aria-hidden="true"><i id="title-progress-bar"></i></span>
+      </div>
+    </section>
+
+    <section class="title-table-wrap" aria-label="Title tracking table">
+      <table class="title-table">
+        <thead>
+          <tr>
+            <th class="complete-col">Complete?</th>
+            <th>Title / Dungeon</th>
+            <th>Materials / Progress</th>
+            <th>Title Set</th>
+          </tr>
+        </thead>
+        <tbody id="title-table-body"></tbody>
+      </table>
+      <div id="title-empty-state" class="empty-state hidden">No titles match the current filters.</div>
+    </section>
+  </main>
+
+
+  <div id="welcome-overlay" class="welcome-overlay hidden" aria-hidden="true">
+    <section id="welcome-popup" class="welcome-popup" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+      <div class="welcome-popup-head">
+        <div>
+          <span class="tutorial-kicker">WELCOME</span>
+          <h1 id="welcome-title">LaTale Dungeon Tracker</h1>
+          <p>Track Field and Dungeon Monster Illustrations, Codex items, title materials, and completion progress in one place.</p>
+        </div>
+        <button id="welcome-close" class="icon-button welcome-close" type="button" aria-label="Close guide" title="Close guide">×</button>
+      </div>
+      <div class="welcome-guide-grid" aria-label="How to use the tracker">
+        <article class="welcome-guide-card"><span class="tutorial-step">01</span><h2>Fields</h2><p>Browse on-field locations with their Monster Illustrations and Item Codex entries grouped together. Field progress is tracked separately from Dungeon progress.</p></article>
+        <article class="welcome-guide-card"><span class="tutorial-step">02</span><h2>Dungeons</h2><p>Search or filter dungeons, then expand a card to track Monster Illustrations, Codex-registerable items, titles, and overall completion.</p></article>
+        <article class="welcome-guide-card"><span class="tutorial-step">03</span><h2>Titles</h2><p>Track title materials, Ely or reputation requirements, title sets, coupon eligibility, and completed titlebooks.</p></article>
+        <article class="welcome-guide-card"><span class="tutorial-step">04</span><h2>Saved locally</h2><p>Your completion progress is stored in this browser. Fields and Dungeons use separate completion states even when a monster or item name matches.</p></article>
+      </div>
+      <div class="welcome-disclaimer">
+        <strong>Disclaimer</strong>
+        <p>This is an unofficial community tracker and is not affiliated with or endorsed by Actoz Soft, Papaya Play, or the LaTale development team. In-game information and official notices remain authoritative.</p>
+        <p>Dungeon and title data is synchronized from the project Google Sheet. Field and Dungeon Illustration Book data is sourced from the Official La Tale Wiki.</p>
+        <p>The Codex system is being revamped in the upcoming major update <a href="https://www.latale.com/news/notice/view/3705?category=3&amp;page=1" target="_blank" rel="noopener noreferrer"><strong><em>SHINING</em></strong></a>.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer class="shell footer">Data synced from LT Boss Matts Tracker · Last synced: <time id="last-sync" datetime="">Not available</time> · Build v13.9.4.18 · Title progress is saved in this browser.</footer>
+  <script src="assets/data.js?v=13.9.4.18"></script>
+  <script src="assets/title-tracker.js?v=13.9.4.18"></script>
+</body>
+</html>
