@@ -1,0 +1,1047 @@
+:root{
+  --bg:#0b0f17;
+  --panel:#111722;
+  --panel-2:#151d2a;
+  --panel-3:#0e141e;
+  --line:#263244;
+  --line-soft:#1d2736;
+  --text:#edf3ff;
+  --muted:#8e9bb0;
+  --accent:#ff4f8b;
+  --codex:#93b2ff;
+  --codex-bg:#172849;
+  --title:#d7adff;
+  --title-bg:#2d1e43;
+  --badge5:#8ed6a5;
+  --badge5-bg:#173524;
+  --progress-pink:#ff4f8b;
+  --bg-overlay:rgba(11,15,23,.70);
+  --radius:9px;
+}
+
+html[data-theme="light"]{
+  --bg:#f4f7fb;
+  --panel:#ffffff;
+  --panel-2:#f1f5fa;
+  --panel-3:#f7f9fc;
+  --line:#cdd7e4;
+  --line-soft:#e3e9f0;
+  --text:#142033;
+  --muted:#607086;
+  --accent:#ff4f8b;
+  --codex:#3567c8;
+  --codex-bg:#e8f0ff;
+  --title:#7a3fb2;
+  --title-bg:#f2e8fb;
+  --badge5:#277a47;
+  --badge5-bg:#e5f5ea;
+  --progress-pink:#ff4f8b;
+  --bg-overlay:rgba(255,255,255,.56);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+    url("bg-latale.webp") center top / cover no-repeat fixed,
+    var(--bg);
+  color:var(--text);
+  font:15px/1.35 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+button,input{font:inherit}
+.shell{width:min(1440px,calc(100% - 24px));margin-inline:auto}
+
+.topbar{
+  position:sticky;top:0;z-index:30;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 97%,transparent);
+  -webkit-backdrop-filter:blur(18px) saturate(125%);
+  backdrop-filter:blur(18px) saturate(125%);
+}
+.topbar-inner{height:54px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:9px;color:inherit;text-decoration:none;min-width:0}
+.brand-mark{
+  width:30px;height:30px;display:grid;place-items:center;flex:0 0 auto;
+  border-radius:7px;overflow:hidden;
+}
+.brand-mark img{width:100%;height:100%;display:block;object-fit:contain}
+.brand strong{display:block;font-size:16px;line-height:1.1}
+.brand small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.topbar-actions{display:flex;align-items:center;gap:8px}
+.result-count{color:var(--muted);font-size:13px;white-space:nowrap}
+.icon-button{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line);border-radius:7px;background:var(--panel-2);color:var(--text);cursor:pointer;padding:0;font-size:17px;line-height:1}
+.icon-button:hover{border-color:var(--accent);background:color-mix(in srgb,var(--panel-2) 88%,var(--accent) 12%)}
+.icon-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.page{padding-top:0}
+.filter-panel{
+  position:sticky;top:54px;z-index:29;
+  padding:10px;border:1px solid var(--line);border-top:0;
+  border-radius:0 0 var(--radius) var(--radius);
+  background:color-mix(in srgb,var(--panel) 97%,transparent);
+  -webkit-backdrop-filter:blur(18px) saturate(125%);
+  backdrop-filter:blur(18px) saturate(125%);
+  box-shadow:0 12px 28px rgba(0,0,0,.18),0 1px 0 color-mix(in srgb,var(--line) 80%,transparent);
+}
+.filter-top{display:flex;gap:8px;flex-wrap:wrap}
+.search-wrap{min-width:min(360px,100%)}
+.search-wrap{
+  flex:1;min-width:0;height:34px;display:flex;align-items:center;gap:7px;
+  border:1px solid var(--line);border-radius:7px;background:var(--panel-3);padding:0 9px;
+}
+.search-icon{color:var(--muted);font-size:19px;line-height:1}
+.search-wrap input{width:100%;border:0;outline:0;background:transparent;color:var(--text);font-size:14px}
+.search-wrap input::placeholder{color:#69778c}
+.search-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 18%,transparent)}
+.small-button{
+  height:34px;border:1px solid var(--line);border-radius:7px;background:var(--panel-2);color:var(--muted);padding:0 12px;cursor:pointer;
+}
+.small-button:hover{color:var(--text);border-color:var(--accent);background:color-mix(in srgb,var(--panel-2) 90%,var(--accent) 10%)}
+
+.range-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.range-chip{position:relative;cursor:pointer;user-select:none}
+.range-chip input{position:absolute;opacity:0;pointer-events:none}
+.range-chip span{
+  min-height:28px;display:flex;align-items:center;padding:4px 9px;
+  border:1px solid var(--line);border-radius:6px;background:var(--panel-3);color:var(--muted);
+  font-size:13px;font-weight:650;white-space:nowrap;
+}
+.range-chip input:checked + span{border-color:var(--accent);background:color-mix(in srgb,var(--panel-3) 82%,var(--accent) 18%);color:var(--text)}
+.range-chip input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.all-chip span{font-weight:800}
+
+.legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px;color:var(--muted);font-size:12px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend-note{margin-left:auto}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.codex-dot{background:var(--codex)}
+.title-dot{background:var(--title)}
+.badge5-dot{background:var(--badge5)}
+
+.dungeon-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
+  padding:10px 0 18px;
+}
+.dungeon-card{
+  min-width:0;align-self:start;overflow:hidden;
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+}
+.dungeon-head{
+  min-height:42px;padding:0;display:flex;align-items:stretch;
+  border-bottom:1px solid var(--line-soft);background:var(--panel-2);
+}
+.dungeon-toggle,.dungeon-static-head{width:100%;padding:8px 9px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;border:0;background:transparent;color:inherit;text-align:left}
+.dungeon-toggle{cursor:pointer}
+.dungeon-toggle:hover{background:color-mix(in srgb,var(--panel-2) 88%,var(--accent) 12%)}
+.dungeon-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.dungeon-head-right{display:flex;align-items:center;gap:6px;flex:0 0 auto}
+.collapse-chevron{width:14px;color:var(--muted);font-size:13px;line-height:1;transition:transform .15s ease;transform:rotate(0deg)}
+.dungeon-card .collapse-chevron{transform:rotate(-90deg)}
+.dungeon-card.expanded .collapse-chevron{transform:rotate(0deg)}
+.dungeon-card.expandable .dungeon-body{display:none}
+.dungeon-card.expandable.expanded .dungeon-body{display:block}
+.dungeon-card.expandable.expanded .dungeon-summary,
+.dungeon-card.expandable.expanded .monster-summary{display:none}
+.dungeon-summary{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:6px 9px;border-top:1px solid var(--line-soft);background:var(--panel-3);color:var(--muted);font-size:10.5px}
+.dungeon-summary span{white-space:nowrap}
+.dungeon-summary strong{color:#aab7ca;font-size:10px;letter-spacing:.025em;text-transform:uppercase}
+.dungeon-card.no-drops .dungeon-head{border-bottom:1px solid var(--line-soft)}
+.dungeon-title-wrap{min-width:0}
+.dungeon-name{font-size:14px;font-weight:760;line-height:1.2;overflow-wrap:anywhere}
+.dungeon-meta{display:flex;align-items:center;gap:7px;margin-top:3px;color:var(--muted);font-size:11.5px}
+.level-badge{
+  flex:0 0 auto;border:1px solid color-mix(in srgb,var(--accent) 66%,var(--line));border-radius:5px;
+  background:color-mix(in srgb,var(--panel-3) 84%,var(--accent) 16%);color:color-mix(in srgb,var(--text) 84%,var(--accent) 16%);
+  padding:2px 5px;font-size:11px;font-weight:800;white-space:nowrap;
+}
+
+.item-columns{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;
+}
+.item-column{min-width:0;border-right:1px solid var(--line-soft)}
+.item-column:last-child{border-right:0}
+.item-column-head{
+  padding:5px 7px;border-bottom:1px solid var(--line-soft);background:var(--panel-3);
+  color:#aab7ca;font-size:10.5px;font-weight:800;letter-spacing:.045em;text-transform:uppercase;
+}
+.item-list{list-style:none;margin:0;padding:0}
+.item-row{
+  min-height:29px;padding:4px 6px;border-top:1px solid var(--line-soft);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:5px;
+}
+.item-row:first-child{border-top:0}
+.item-row:hover{background:#151d29}
+.item-name{min-width:0;font-size:11.5px;line-height:1.2;overflow-wrap:anywhere}
+.item-flags{display:flex;align-items:center;justify-content:flex-end;gap:2px;flex-wrap:wrap;flex:0 0 auto;max-width:82px}
+.flag{
+  display:inline-flex;align-items:center;justify-content:center;height:15px;padding:0 4px;
+  border:1px solid transparent;border-radius:999px;font-size:9px;font-weight:800;letter-spacing:.005em;white-space:nowrap;
+}
+.flag.codex{border-color:#365487;background:var(--codex-bg);color:var(--codex)}
+.flag.title{border-color:#664488;background:var(--title-bg);color:var(--title)}
+.flag.badge5{border-color:#38694a;background:var(--badge5-bg);color:var(--badge5)}
+.column-empty{padding:8px 7px;color:#465367;font-size:11px;text-align:center}
+.no-items{padding:10px;color:var(--muted);font-size:12px}
+.card-note{padding:5px 8px;border-top:1px solid var(--line-soft);color:#718096;font-size:11px;background:#0f151f}
+.card-note strong{color:#9aa7bb;font-weight:650}
+
+.empty-state{margin:10px 0 30px;padding:30px;border:1px dashed var(--line);border-radius:var(--radius);text-align:center;color:var(--muted)}
+.hidden{display:none!important}
+.footer{padding:3px 0 28px;color:#5f6d81;font-size:11.5px;text-align:center}
+
+@media(max-width:1180px){
+  .item-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .item-column:nth-child(2){border-right:0}
+  .item-column:nth-child(-n+2){border-bottom:1px solid var(--line-soft)}
+}
+@media(max-width:840px){
+  .page{padding-top:10px}
+  .dungeon-grid{grid-template-columns:1fr}
+  .filter-panel{position:static;border-top:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 24px rgba(0,0,0,.10)}
+  .legend-note{width:100%;margin-left:0}
+  .item-columns{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .item-column:nth-child(2){border-right:1px solid var(--line-soft)}
+  .item-column:nth-child(-n+2){border-bottom:0}
+}
+@media(max-width:620px){
+  .shell{width:min(100% - 14px,1440px)}
+  .brand small{display:none}
+  .dungeon-grid{grid-template-columns:1fr;gap:7px}
+  .range-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .range-chip span{white-space:normal}
+  .filter-top{align-items:stretch}
+  .small-button{padding-inline:10px}
+  .item-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .item-column:nth-child(2){border-right:0}
+  .item-column:nth-child(-n+2){border-bottom:1px solid var(--line-soft)}
+}
+@media(max-width:380px){
+  .item-columns{grid-template-columns:1fr}
+  .item-column{border-right:0;border-bottom:1px solid var(--line-soft)!important}
+  .item-column:last-child{border-bottom:0!important}
+}
+
+html[data-theme="light"] .range-chip input:checked + span{border-color:var(--accent);background:color-mix(in srgb,#fff 86%,var(--accent) 14%);color:#7d173e}
+html[data-theme="light"] .level-badge{background:color-mix(in srgb,#fff 88%,var(--accent) 12%);color:#9c2454;border-color:color-mix(in srgb,var(--accent) 68%,#cdd7e4)}
+html[data-theme="light"] .item-row:hover{background:#f4f7fb}
+html[data-theme="light"] .card-note{background:#f7f9fc;color:#617188}
+html[data-theme="light"] .card-note strong{color:#42536b}
+
+
+/* V10.5 completion tracking */
+.item-check{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;width:15px;height:15px;margin:1px 5px 0 0;
+  border:1px solid var(--line);border-radius:4px;background:var(--panel-3);cursor:pointer;position:relative;
+}
+.item-check:checked{border-color:var(--codex);background:var(--codex)}
+.item-check:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:var(--bg);font-size:11px;font-weight:900;line-height:1}
+.item-check:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.item-main{min-width:0;display:flex;align-items:flex-start;flex:1}
+.item-row.completed .item-name{text-decoration:line-through;opacity:.55}
+.item-row.completed .item-flags{opacity:.6}
+.summary-progress{margin-left:auto}
+
+
+/* V11 shared navigation + Title Tracker */
+.site-nav{display:flex;align-items:center;gap:4px;margin-left:auto;margin-right:8px}
+.site-nav-link{display:flex;align-items:center;height:30px;padding:0 10px;border:1px solid transparent;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:700}
+.site-nav-link:hover{color:var(--text);background:var(--panel-2)}
+.site-nav-link.active{color:var(--text);border-color:color-mix(in srgb,var(--accent) 65%,var(--line));background:color-mix(in srgb,var(--panel-2) 90%,var(--accent) 10%)}
+.compact-select{height:34px;border:1px solid var(--line);border-radius:7px;background:var(--panel-2);color:var(--text);padding:0 30px 0 10px}
+.danger-button{white-space:nowrap}
+.title-progress-strip{display:flex;align-items:center;gap:12px;margin-top:8px;color:var(--muted);font-size:12px}
+.title-progress-strip strong{color:var(--text)}
+.title-progress-track{height:5px;flex:1;max-width:260px;border-radius:999px;background:var(--line-soft);overflow:hidden}
+.title-progress-track i{display:block;height:100%;width:0;background:var(--progress-pink);transition:width .2s ease}
+.title-table-wrap{margin:10px 0 18px;border:1px solid var(--line);border-radius:var(--radius);overflow:auto;background:var(--panel);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.title-table{width:max-content;min-width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+.title-table th,.title-table td{border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:6px 7px;vertical-align:middle}
+.title-table th:last-child,.title-table td:last-child{border-right:0}
+.title-table tbody tr:last-child td{border-bottom:0}
+.title-table thead th{position:sticky;top:0;z-index:3;background:var(--panel-2);color:var(--text);text-align:left;font-size:11px;font-weight:800;letter-spacing:.02em;white-space:nowrap;box-shadow:0 1px 0 var(--line)}
+.title-table tbody tr:hover td{background:color-mix(in srgb,var(--panel) 90%,var(--accent) 10%)}
+.title-table .complete-col,.title-table .complete-cell{width:76px;text-align:center}
+.title-table .number-col,.title-table .number-cell{width:92px;text-align:center}
+.title-table .title-name-cell{min-width:210px;font-weight:700}
+.title-table .material-cell{min-width:210px;max-width:280px}
+.title-table .title-set-cell{min-width:190px;max-width:260px}
+.title-table .level-cell{white-space:nowrap}
+.title-table .required-cell{font-weight:700}
+.title-complete-check{width:17px;height:17px;accent-color:var(--progress-pink);cursor:pointer}
+.current-input{width:72px;height:28px;border:1px solid var(--line);border-radius:5px;background:var(--panel-3);color:var(--text);padding:2px 6px;text-align:right}
+.current-input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.remaining-cell{font-variant-numeric:tabular-nums;font-weight:650}
+.empty-cell{color:var(--muted)}
+.title-complete-row td{background:color-mix(in srgb,var(--badge5-bg) 45%,var(--panel) 55%)}
+.title-complete-row .title-name-cell{text-decoration:line-through;color:var(--muted)}
+@media(max-width:760px){
+  .site-nav{order:3;width:100%;margin:0;padding-bottom:6px}.topbar-inner{height:auto;min-height:54px;flex-wrap:wrap}.site-nav-link{flex:1;justify-content:center}
+  .title-filter-panel{position:static}.title-table-wrap{margin-top:10px}.title-page{padding-top:8px}
+}
+
+/* V11.1 — wider, more readable Title Tracker */
+.title-tracker-page .shell{width:calc(100% - 40px);max-width:none}
+.title-tracker-page .title-page{padding-top:0}
+.title-tracker-page .title-table-wrap{margin-top:10px}
+.title-tracker-page .title-table{font-size:14px}
+.title-tracker-page .title-table th,.title-tracker-page .title-table td{padding:8px 9px}
+.title-tracker-page .title-table thead th{font-size:13px}
+.title-tracker-page .title-table .complete-col,.title-tracker-page .title-table .complete-cell{width:88px}
+.title-tracker-page .title-table .number-col,.title-tracker-page .title-table .number-cell{width:108px}
+.title-tracker-page .title-table .title-name-cell{min-width:270px}
+.title-tracker-page .title-table .material-cell{min-width:260px;max-width:360px}
+.title-tracker-page .title-table .title-set-cell{min-width:240px;max-width:340px}
+.title-tracker-page .current-input{width:82px;height:32px;font-size:14px}
+.title-tracker-page .compact-select{font-size:14px}
+.title-tracker-page .title-progress-strip{font-size:14px}
+@media(max-width:760px){.title-tracker-page .shell{width:calc(100% - 14px)}}
+
+
+/* V11.2 — compact stacked Title Tracker */
+.title-tracker-page .title-table{width:100%;min-width:980px;table-layout:fixed}
+.title-tracker-page .title-table .complete-col,.title-tracker-page .title-table .complete-cell{width:82px}
+.title-tracker-page .title-table .level-head,.title-tracker-page .title-table .level-cell{width:82px;text-align:center}
+.title-tracker-page .title-table .required-head,.title-tracker-page .title-table .required-cell{width:100px;text-align:center}
+.title-tracker-page .title-table .title-name-cell{width:24%;min-width:220px}
+.title-tracker-page .title-table .materials-stack-cell{width:42%;padding:0}
+.title-tracker-page .title-table .title-set-cell{width:20%;min-width:190px}
+.title-name-cell strong{display:block;font-size:14px}
+.title-dungeon-name{display:block;margin-top:3px;color:var(--muted);font-size:12px;font-weight:500}
+.material-progress-row{display:grid;grid-template-columns:minmax(190px,1fr) 118px 105px;align-items:center;min-height:42px;border-top:1px solid var(--line-soft)}
+.material-progress-row:first-child{border-top:0}
+.material-progress-row:hover{background:color-mix(in srgb,var(--panel) 88%,var(--accent) 12%)}
+.material-info{min-width:0;display:flex;align-items:center;gap:6px;padding:7px 9px}
+.material-name{min-width:0;overflow-wrap:anywhere}
+.material-type-badge{display:inline-flex;align-items:center;height:18px;padding:0 6px;border-radius:999px;font-size:10px;font-weight:800;white-space:nowrap}
+.material-type-badge.event{color:#c9a7ff;background:var(--title-bg);border:1px solid #664488}
+.material-type-badge.etc{color:#9fb7d8;background:#172537;border:1px solid #3b526f}
+.material-type-badge.equipment{color:var(--codex);background:var(--codex-bg);border:1px solid #365487}
+.material-type-text{color:var(--muted);font-size:12px;white-space:nowrap}
+.material-current-wrap,.material-remaining{height:100%;display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:5px 8px;border-left:1px solid var(--line-soft)}
+.material-current-wrap span,.material-remaining span{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.03em}
+.material-current-wrap .current-input{width:62px;height:30px}
+.material-remaining strong{min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
+.material-remaining.ready strong{color:var(--badge5)}
+.no-title-materials{padding:10px;color:var(--muted)}
+.title-complete-row .title-dungeon-name{color:var(--muted)}
+@media(max-width:1000px){
+  .material-progress-row{grid-template-columns:minmax(170px,1fr) 108px 96px}
+  .material-current-wrap span,.material-remaining span{display:none}
+}
+@media(max-width:760px){
+  .title-tracker-page .title-table{min-width:820px}
+}
+
+
+/* V11.4 — definitive compact stacked Title Tracker */
+.title-tracker-page .shell{width:calc(100% - 32px);max-width:none}
+.title-tracker-page .title-page{padding-top:0}
+.title-tracker-page .title-table-wrap{margin:10px 0 18px;overflow:auto}
+.title-tracker-page .title-table{width:100%;min-width:1040px;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:14px}
+.title-tracker-page .title-table th,.title-tracker-page .title-table td{padding:8px 10px;vertical-align:middle}
+.title-tracker-page .title-table thead th{font-size:13px}
+.title-tracker-page .title-table .complete-col,.title-tracker-page .title-table .complete-cell{width:82px;text-align:center}
+.title-tracker-page .title-table .level-head,.title-tracker-page .title-table .level-cell{width:82px;text-align:center}
+.title-tracker-page .title-table .required-head,.title-tracker-page .title-table .required-cell{width:104px;text-align:center}
+.title-tracker-page .title-table .title-name-cell{width:25%;min-width:240px}
+.title-tracker-page .title-table .materials-stack-cell{width:43%;padding:0}
+.title-tracker-page .title-table .title-set-cell{width:20%;min-width:200px}
+.title-name-cell strong{display:block;font-size:14px;line-height:1.25}
+.title-dungeon-name{display:block;margin-top:3px;color:var(--muted);font-size:12px;font-weight:500}
+.materials-head-title{display:block}
+.materials-head-cols{display:grid;grid-template-columns:minmax(220px,1fr) 118px 108px;gap:0;margin:5px -10px -8px;border-top:1px solid var(--line-soft);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.03em}
+.materials-head-cols span{padding:5px 9px;border-left:1px solid var(--line-soft)}
+.materials-head-cols span:first-child{border-left:0}
+.material-progress-row{display:grid;grid-template-columns:minmax(220px,1fr) 118px 108px;align-items:stretch;min-height:44px;border-top:1px solid var(--line-soft)}
+.material-progress-row:first-child{border-top:0}
+.material-progress-row:hover{background:color-mix(in srgb,var(--panel) 88%,var(--accent) 12%)}
+.material-info{min-width:0;display:flex;align-items:center;gap:7px;padding:8px 10px}
+.material-name{min-width:0;overflow-wrap:anywhere}
+.material-type-badge{display:inline-flex;align-items:center;height:19px;padding:0 6px;border-radius:999px;font-size:10px;font-weight:800;white-space:nowrap}
+.material-type-badge.event{color:#c9a7ff;background:var(--title-bg);border:1px solid #664488}
+.material-type-badge.etc{color:#9fb7d8;background:#172537;border:1px solid #3b526f}
+.material-type-badge.equipment{color:var(--codex);background:var(--codex-bg);border:1px solid #365487}
+.material-type-text{color:var(--muted);font-size:12px;white-space:nowrap}
+.material-current-wrap,.material-remaining{height:100%;display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:6px 9px;border-left:1px solid var(--line-soft)}
+.material-current-wrap span,.material-remaining span{display:none}
+.material-current-wrap .current-input{width:72px;height:31px;font-size:14px}
+.material-remaining strong{min-width:32px;text-align:right;font-variant-numeric:tabular-nums}
+.material-remaining.ready strong{color:var(--badge5)}
+.no-title-materials{padding:10px;color:var(--muted)}
+.title-complete-row .title-dungeon-name{color:var(--muted)}
+@media(max-width:900px){
+  .title-tracker-page .shell{width:calc(100% - 14px)}
+  .title-tracker-page .title-table{min-width:900px}
+  .materials-head-cols,.material-progress-row{grid-template-columns:minmax(190px,1fr) 106px 96px}
+}
+
+
+/* V11.5 — compact Title Tracker */
+.title-tracker-page .shell{width:min(1180px,calc(100% - 24px));max-width:1180px}
+.title-tracker-page .title-table-wrap{margin:10px auto 18px;overflow:auto}
+.title-tracker-page .title-table{width:100%;min-width:920px;table-layout:fixed;font-size:13px}
+.title-tracker-page .title-table th,.title-tracker-page .title-table td{padding:7px 8px}
+.title-tracker-page .title-table thead th{font-size:12px}
+.title-tracker-page .title-table .complete-col,.title-tracker-page .title-table .complete-cell{width:74px}
+.title-tracker-page .title-table .level-head,.title-tracker-page .title-table .level-cell{width:70px}
+.title-tracker-page .title-table .required-head,.title-tracker-page .title-table .required-cell{width:86px}
+.title-tracker-page .title-table .title-name-cell{width:26%;min-width:210px}
+.title-tracker-page .title-table .materials-stack-cell{width:42%;padding:0}
+.title-tracker-page .title-table .title-set-cell{width:18%;min-width:150px}
+.materials-head-cols{display:none!important}
+.material-progress-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:39px;border-top:1px solid var(--line-soft)}
+.material-progress-row:first-child{border-top:0}
+.material-info{min-width:0;display:flex;align-items:center;gap:6px;padding:6px 8px}
+.material-name{min-width:0;overflow-wrap:anywhere}
+.material-progress-inline{display:flex;align-items:center;justify-content:flex-end;gap:7px;padding:5px 8px;white-space:nowrap}
+.material-progress-inline .current-input{width:62px;height:29px;padding:3px 6px;text-align:center;font-size:13px}
+.progress-slash{color:var(--muted);font-weight:700}
+.material-remaining{display:inline-flex!important;height:auto!important;align-items:center;justify-content:flex-start;padding:0!important;border:0!important;min-width:82px;color:var(--muted)}
+.material-remaining strong{min-width:0!important;text-align:left!important;font-weight:650;font-variant-numeric:tabular-nums}
+.material-remaining.ready strong{color:var(--badge5)}
+.material-type-badge.etc{color:#71c58c;background:#163522;border-color:#2e7447}
+html[data-theme="light"] .material-type-badge.etc{color:#21683c;background:#e4f4e9;border-color:#79b88c}
+@media(max-width:980px){
+  .title-tracker-page .shell{width:calc(100% - 14px);max-width:none}
+  .title-tracker-page .title-table{min-width:860px}
+}
+
+/* v11.6: completed title material inputs are locked and visibly inactive */
+.title-tracker-page .current-input:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  color:var(--muted);
+  background:var(--panel-3);
+  border-color:var(--line-soft);
+}
+html[data-theme="light"] .title-tracker-page .current-input:disabled{
+  background:#eef1f5;
+  color:#8b95a5;
+}
+
+
+/* V11.7 — compact title tracker: inline dungeon level, wider materials, stacked title sets */
+.title-tracker-page .title-table{min-width:880px}
+.title-tracker-page .title-table .title-name-cell{width:29%;min-width:235px}
+.title-tracker-page .title-table .required-head,.title-tracker-page .title-table .required-cell{width:82px}
+.title-tracker-page .title-table .materials-stack-cell{width:49%;padding:0}
+.title-tracker-page .title-table .title-set-cell{width:16%;min-width:145px}
+.title-dungeon-name{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.dungeon-level-inline{display:inline-flex;align-items:center;height:18px;padding:0 5px;border:1px solid #40577c;border-radius:5px;background:#17233a;color:#b9cbff;font-size:10px;font-weight:800;white-space:nowrap}
+html[data-theme="light"] .dungeon-level-inline{background:#edf3ff;color:#315586;border-color:#9cb0cd}
+.material-progress-row{grid-template-columns:minmax(235px,1fr) auto}
+.material-info{padding-right:12px}
+.title-set-cell{white-space:normal}
+.title-set-line{display:block;line-height:1.25;padding:2px 0}
+.title-set-line + .title-set-line{margin-top:3px;padding-top:5px;border-top:1px solid var(--line-soft)}
+@media(max-width:980px){
+  .title-tracker-page .title-table{min-width:820px}
+  .title-tracker-page .title-table .title-name-cell{min-width:215px}
+  .material-progress-row{grid-template-columns:minmax(210px,1fr) auto}
+}
+
+/* V11.8 — dungeon level shown as plain text in parentheses */
+.title-dungeon-name{display:block;margin-top:3px;color:var(--muted);font-size:12px;font-weight:500}
+.dungeon-level-inline{display:none!important}
+
+
+/* V11.9 — Required amount is calculated internally, no standalone column */
+.title-tracker-page .title-table{min-width:800px}
+.title-tracker-page .title-table .title-name-cell{width:31%;min-width:235px}
+.title-tracker-page .title-table .materials-stack-cell{width:52%;padding:0}
+.title-tracker-page .title-table .title-set-cell{width:17%;min-width:145px}
+@media(max-width:760px){
+  .title-tracker-page .title-table{min-width:760px}
+}
+
+/* V12.0 — rebalance compact Title Tracker columns and prevent overlap */
+.title-tracker-page .title-table{min-width:800px}
+.title-tracker-page .title-table .title-name-cell{width:30%;min-width:230px}
+.title-tracker-page .title-table .materials-stack-cell{width:58%;padding:0;overflow:hidden}
+.title-tracker-page .title-table .title-set-cell{width:12%;min-width:108px;max-width:135px;white-space:normal;overflow-wrap:anywhere}
+.material-progress-row{grid-template-columns:minmax(0,1fr) 168px;min-width:0}
+.material-info{min-width:0;padding-right:10px}
+.material-name{min-width:0;overflow-wrap:anywhere}
+.material-progress-inline{min-width:0;width:168px;box-sizing:border-box;overflow:hidden;padding-left:6px;padding-right:6px;gap:6px}
+.material-progress-inline .current-input{flex:0 0 58px;width:58px}
+.material-remaining{min-width:0;flex:1 1 auto;overflow:hidden}
+.material-remaining strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.title-set-line{overflow-wrap:anywhere}
+@media(max-width:900px){
+  .title-tracker-page .title-table{min-width:760px}
+  .title-tracker-page .title-table .title-name-cell{width:29%;min-width:215px}
+  .title-tracker-page .title-table .materials-stack-cell{width:59%}
+  .title-tracker-page .title-table .title-set-cell{width:12%;min-width:100px}
+  .material-progress-row{grid-template-columns:minmax(0,1fr) 160px}
+  .material-progress-inline{width:160px}
+}
+
+/* V12.1 — stable compact title columns; no Materials/Title Set overlap */
+.title-tracker-page .title-table{
+  width:100%;
+  min-width:860px;
+  table-layout:fixed;
+}
+.title-tracker-page .title-table .complete-col,
+.title-tracker-page .title-table .complete-cell{
+  width:56px;
+}
+.title-tracker-page .title-table .title-name-cell{
+  width:31%;
+  min-width:0;
+}
+.title-tracker-page .title-table .materials-stack-cell{
+  width:48%;
+  min-width:0;
+  padding:0;
+  overflow:hidden;
+}
+.title-tracker-page .title-table .title-set-cell{
+  width:15%;
+  min-width:0;
+  max-width:none;
+  white-space:normal;
+  overflow:hidden;
+  overflow-wrap:anywhere;
+}
+.material-progress-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 184px;
+  min-width:0;
+  width:100%;
+}
+.material-info{
+  min-width:0;
+  overflow:hidden;
+}
+.material-name{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+.material-progress-inline{
+  width:184px;
+  min-width:184px;
+  max-width:184px;
+  box-sizing:border-box;
+  overflow:visible;
+  display:grid;
+  grid-template-columns:58px 10px minmax(0,1fr);
+  align-items:center;
+  gap:6px;
+  padding:5px 7px;
+}
+.material-progress-inline .current-input{
+  width:58px;
+  min-width:58px;
+  max-width:58px;
+}
+.progress-slash{
+  width:10px;
+  text-align:center;
+}
+.material-remaining{
+  min-width:0;
+  width:auto;
+  overflow:visible;
+}
+.material-remaining strong{
+  white-space:nowrap;
+  overflow:visible;
+  text-overflow:clip;
+  font-size:12px;
+}
+@media(max-width:940px){
+  .title-tracker-page .title-table{min-width:860px}
+  .material-progress-row{grid-template-columns:minmax(0,1fr) 176px}
+  .material-progress-inline{width:176px;min-width:176px;max-width:176px;grid-template-columns:54px 9px minmax(0,1fr);gap:5px;padding-inline:6px}
+  .material-progress-inline .current-input{width:54px;min-width:54px;max-width:54px}
+}
+
+
+/* V12.2 dungeon progress summary */
+.dungeon-progress-panel{
+  margin:10px 0 0;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel);box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden;
+}
+.dungeon-progress-head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px;
+  border-bottom:1px solid var(--line-soft);background:var(--panel-2);
+}
+.dungeon-progress-head strong{display:block;font-size:13px}
+.dungeon-progress-head span{display:block;margin-top:2px;color:var(--muted);font-size:11px}
+.progress-total{margin:0!important;white-space:nowrap;font-weight:700;color:var(--text)!important}
+.dungeon-progress-table-wrap{overflow-x:auto}
+.dungeon-progress-table{width:100%;border-collapse:collapse;font-size:12px}
+.dungeon-progress-table th,.dungeon-progress-table td{padding:7px 12px;border-bottom:1px solid var(--line-soft);text-align:right}
+.dungeon-progress-table thead th{background:var(--panel-3);color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+.dungeon-progress-table th:first-child{text-align:left}
+.dungeon-progress-table tbody th{color:var(--text);font-weight:700}
+.dungeon-progress-table tbody tr:last-child th,.dungeon-progress-table tbody tr:last-child td{border-bottom:0}
+.dungeon-progress-table .progress-left{font-weight:800}
+.dungeon-progress-table .progress-left.complete{color:var(--badge5)}
+.danger-button{border-color:color-mix(in srgb,var(--line) 72%,#d66 28%)}
+.danger-button:hover{border-color:#b85d5d;color:#e2a0a0}
+@media(max-width:620px){
+  .dungeon-progress-head{align-items:flex-start;flex-direction:column;gap:5px}
+  .progress-total{white-space:normal}
+  .dungeon-progress-table th,.dungeon-progress-table td{padding:6px 9px}
+}
+
+
+/* V12.5 floating Codex progress control */
+.codex-fab{
+  position:fixed;right:20px;bottom:20px;z-index:45;
+  min-width:82px;height:42px;border:1px solid var(--line);border-radius:999px;
+  display:grid;place-items:center;padding:0 14px;cursor:pointer;
+  background:var(--panel-2);color:var(--codex);
+  box-shadow:0 10px 28px rgba(0,0,0,.22);
+  font:800 13px/1 Inter,ui-sans-serif,system-ui,sans-serif;
+  transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
+}
+.codex-fab:hover{transform:translateY(-2px);border-color:var(--codex);box-shadow:0 14px 32px rgba(0,0,0,.28)}
+.codex-fab[aria-expanded="true"]{background:var(--codex-bg);border-color:var(--codex)}
+.floating-progress-panel{
+  position:fixed;right:20px;bottom:78px;z-index:44;
+  width:min(420px,calc(100vw - 28px));margin:0;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  box-shadow:0 18px 48px rgba(0,0,0,.28);overflow:hidden;
+}
+.floating-progress-panel .dungeon-progress-head{padding:12px 14px}
+.floating-progress-panel .dungeon-progress-table-wrap{max-height:260px;overflow:auto}
+.floating-progress-actions{display:flex;justify-content:flex-end;padding:10px 12px;border-top:1px solid var(--line-soft);background:var(--panel-3)}
+@media(max-width:560px){
+  .codex-fab{right:12px;bottom:12px;min-width:78px;height:40px;padding:0 12px}
+  .floating-progress-panel{right:12px;bottom:62px;width:calc(100vw - 24px)}
+}
+
+
+/* V13.2 illustrated Codex progress toggle */
+.codex-fab.codex-image-toggle{
+  width:88px;
+  height:82px;
+  min-width:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  overflow:visible;
+}
+.codex-fab.codex-image-toggle:hover{
+  transform:translateY(-2px) scale(1.03);
+  border-color:transparent;
+  box-shadow:none;
+}
+.codex-fab.codex-image-toggle[aria-expanded="true"]{
+  background:transparent;
+  border-color:transparent;
+}
+.codex-image-toggle img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.22));
+  pointer-events:none;
+}
+.floating-progress-panel{bottom:104px;}
+@media(max-width:560px){
+  .codex-fab.codex-image-toggle{right:8px;bottom:8px;width:76px;height:70px;padding:0;}
+  .floating-progress-panel{bottom:88px;}
+}
+
+
+/* V13.3 — stronger illustrated background + semantic Codex blue */
+html[data-theme="light"] .dungeon-card,
+html[data-theme="light"] .title-table-wrap{
+  background:color-mix(in srgb,var(--panel) 92%,transparent);
+  -webkit-backdrop-filter:blur(3px);
+  backdrop-filter:blur(3px);
+}
+html[data-theme="light"] .dungeon-head,
+html[data-theme="light"] .title-table thead th{
+  background:color-mix(in srgb,var(--panel-2) 94%,transparent);
+}
+html[data-theme="light"] .dungeon-summary{background:color-mix(in srgb,var(--panel-3) 92%,transparent)}
+
+/* Force title completion checkbox to use the LaTale pink rather than browser defaults. */
+.title-complete-check{
+  appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:0;
+  border:1px solid var(--line);border-radius:4px;background:var(--panel-3);
+  cursor:pointer;position:relative;vertical-align:middle;
+}
+.title-complete-check:checked{border-color:var(--progress-pink);background:var(--progress-pink)}
+.title-complete-check:checked::after{
+  content:"✓";position:absolute;inset:0;display:grid;place-items:center;
+  color:#fff;font-size:13px;font-weight:900;line-height:1;
+}
+.title-complete-check:focus-visible{outline:2px solid var(--progress-pink);outline-offset:2px}
+
+/* Keep the Codex floating control visible even while its image is loading. */
+.codex-fab.codex-image-toggle{display:grid!important;place-items:center}
+.codex-image-toggle .codex-fallback{display:none;color:var(--codex);font-weight:800;font-size:12px}
+.codex-image-toggle.image-failed img{display:none}
+.codex-image-toggle.image-failed .codex-fallback{display:inline-flex}
+
+/* V13.4 — hard override: semantic Codex badges/checks are blue */
+:root{
+  --codex:#93b2ff;
+  --codex-bg:#172849;
+}
+html[data-theme="light"]{
+  --codex:#3567c8;
+  --codex-bg:#e8f0ff;
+}
+.item-flags .flag.codex,
+.flag.codex{
+  border-color:#365487 !important;
+  background:var(--codex-bg) !important;
+  color:var(--codex) !important;
+}
+.item-check:checked{
+  border-color:var(--codex) !important;
+  background:var(--codex) !important;
+}
+.codex-fab,
+.codex-fab .codex-fallback{
+  color:var(--codex) !important;
+}
+
+
+/* v13.4.4: Title Tracker material completion ticks use LaTale pink */
+.title-tracker-page .material-remaining.ready strong {
+  color: var(--progress-pink) !important;
+}
+
+/* V13.4.5 fallback: force completed title material tick pink */
+.title-tracker-page .material-remaining.ready strong{color:#ff4f8b!important;}
+
+
+/* v13.5: Instance Dungeon Guaranteed Titlebook Coupon II indicator */
+.title-name-line{
+  display:flex;align-items:center;gap:6px;min-width:0;
+}
+.title-name-line strong{
+  display:block;min-width:0;
+}
+.title-coupon-icon{
+  width:20px;height:20px;object-fit:contain;flex:0 0 auto;
+  image-rendering:auto;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18));
+}
+.title-complete-row .title-coupon-icon{opacity:.58;filter:grayscale(.18) drop-shadow(0 1px 1px rgba(0,0,0,.12));}
+
+
+/* v13.5.1: Coupon II indicator sits directly after the title name */
+.title-tracker-page .title-name-line{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  max-width:100%;
+}
+.title-tracker-page .title-name-line strong{
+  display:inline !important;
+  min-width:0;
+}
+.title-tracker-page .title-coupon-icon{
+  display:inline-block !important;
+  width:22px !important;
+  height:22px !important;
+  margin-left:2px;
+  object-fit:contain;
+  flex:0 0 22px;
+  vertical-align:middle;
+  opacity:1 !important;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.18)) !important;
+}
+.title-tracker-page .title-complete-row .title-coupon-icon{
+  opacity:1 !important;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.18)) !important;
+}
+
+/* v13.5.2: force Coupon II sprite beside eligible title names */
+.title-tracker-page .title-name-line{display:inline-flex!important;align-items:center!important;gap:4px!important;flex-wrap:nowrap!important;}
+.title-tracker-page .title-coupon-icon{display:inline-block!important;width:22px!important;height:22px!important;min-width:22px!important;max-width:22px!important;opacity:1!important;visibility:visible!important;}
+
+
+/* v13.5.3: nudge coupon icon slightly lower to align with title text */
+.title-tracker-page .title-coupon-icon{
+  position:relative;
+  top:2px;
+}
+
+
+/* v13.6: preserve special non-quantity title requirements from Title Tracker */
+.special-title-requirement,.special-requirement-label{color:var(--muted);font-size:12px;line-height:1.3;}
+.special-title-requirement{padding:7px 8px;}
+.special-material-row{grid-template-columns:minmax(0,1fr) auto;}
+.special-requirement-label{max-width:220px;text-align:right;padding-left:10px;}
+@media(max-width:700px){.special-material-row{grid-template-columns:1fr}.special-requirement-label{text-align:left;padding-left:0;max-width:none}}
+
+
+/* v13.6.1 Codex Progress disclaimer */
+.codex-disclaimer{
+  padding:9px 12px;
+  border-bottom:1px solid var(--line-soft);
+  background:color-mix(in srgb,var(--panel-3) 92%,var(--accent) 8%);
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.4;
+}
+.codex-disclaimer strong{color:var(--text);}
+.codex-disclaimer em{color:var(--text);font-style:normal;font-weight:700;}
+.codex-disclaimer a{color:var(--accent);font-weight:800;text-decoration:none;}
+.codex-disclaimer a:hover{text-decoration:underline;}
+
+
+/* V13.7.1 Ely requirements are informational, not progress-tracked */
+.title-tracker-page .ely-requirement{
+  display:inline-flex;align-items:center;min-height:28px;
+  color:var(--text);font-weight:700;
+}
+
+
+/* v13.7.2: special requirements match material typography */
+.title-tracker-page .special-title-requirement,
+.title-tracker-page .special-requirement-label,
+.title-tracker-page .ely-requirement{
+  color:var(--text) !important;
+  font-size:13px !important;
+  line-height:1.25 !important;
+  font-weight:400 !important;
+}
+.title-tracker-page .special-title-requirement{padding:6px 8px !important;}
+.title-tracker-page .special-requirement-label{padding:6px 8px !important;max-width:none !important;}
+
+/* Multiple Title Sets are shown on one line, separated by | */
+.title-tracker-page .title-set-inline{display:inline;line-height:1.35;overflow-wrap:anywhere;}
+.title-tracker-page .title-set-separator{color:var(--muted);padding:0 3px;font-weight:700;}
+.title-tracker-page .title-set-line{display:inline;padding:0;margin:0;border:0;}
+
+
+/* v13.7.4 Title tracker cleanup */
+/* Ely is an informational requirement: same typography as materials, never bold. */
+.title-tracker-page .ely-requirement{
+  color:var(--text)!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:400!important;
+  cursor:default!important;
+}
+
+/* Special achievement/reputation requirements use the same typography as material names. */
+.title-tracker-page .special-title-requirement,
+.title-tracker-page .special-requirement-label,
+.title-tracker-page .no-title-materials{
+  color:var(--text)!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:400!important;
+}
+
+/* Keep stacked materials visually continuous; table row boundaries are enough. */
+.title-tracker-page .material-progress-row,
+.title-tracker-page .material-progress-row + .material-progress-row{
+  border-top:0!important;
+}
+
+/* Make the linked update name visibly interactive and pink. */
+.codex-disclaimer a,
+.codex-disclaimer a strong,
+.codex-disclaimer a em,
+.codex-disclaimer a strong em{
+  color:#ff4f8b!important;
+  text-decoration:none;
+}
+.codex-disclaimer a:hover,
+.codex-disclaimer a:hover strong,
+.codex-disclaimer a:hover em{
+  text-decoration:underline;
+}
+
+
+/* v13.7.5: special/Ely requirements visually match material rows */
+.title-tracker-page .requirement-only-row{grid-template-columns:minmax(0,1fr)!important;min-height:39px!important;border-top:0!important;}
+.title-tracker-page .requirement-only-row .material-info{display:flex;align-items:center;min-height:39px;padding:5px 8px;}
+.title-tracker-page .requirement-only-row .material-name{color:var(--text)!important;font-size:13px!important;line-height:1.25!important;font-weight:400!important;}
+.title-tracker-page .ely-requirement{display:grid!important;padding:0!important;}
+
+
+/* v13.8 Monster Illustration tracking */
+.monster-summary{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:7px 9px;border-top:1px solid var(--line-soft);background:var(--panel);
+  color:var(--muted);font-size:11px;
+}
+.monster-summary strong{
+  color:var(--accent);font-size:11px;font-weight:750;letter-spacing:.01em;
+}
+.monster-summary-progress{margin-left:auto;white-space:nowrap;font-weight:700;color:var(--muted)}
+.monster-illustration-section{border-bottom:1px solid var(--line-soft);background:var(--panel)}
+.monster-illustration-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:7px 9px;background:var(--panel-3);border-bottom:1px solid var(--line-soft);
+}
+.monster-illustration-head strong{font-size:11px;color:var(--accent)}
+.monster-progress{font-size:10.5px;color:var(--muted);font-weight:700;white-space:nowrap}
+.monster-illustration-list{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.monster-illustration-row{
+  min-width:0;display:flex;align-items:flex-start;gap:6px;padding:5px 8px;
+  border-bottom:1px solid var(--line-soft);border-right:1px solid var(--line-soft);
+  font-size:11.5px;line-height:1.25;cursor:pointer;
+}
+.monster-illustration-row:nth-child(2n){border-right:0}
+.monster-illustration-row:hover{background:color-mix(in srgb,var(--panel) 90%,var(--accent) 10%)}
+.monster-illustration-row.completed span{text-decoration:line-through;opacity:.58}
+.monster-check{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;width:15px;height:15px;margin:0;
+  border:1px solid var(--line);border-radius:4px;background:var(--panel-3);cursor:pointer;position:relative;
+}
+.monster-check:checked{border-color:var(--accent);background:var(--accent)}
+.monster-check:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:white;font-size:11px;font-weight:900;line-height:1}
+.monster-check:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.monster-illustration-empty{grid-column:1/-1;padding:8px 9px;color:var(--muted);font-size:11.5px}
+html[data-theme="light"] .monster-summary{background:color-mix(in srgb,var(--panel) 92%,transparent)}
+
+@media(max-width:620px){
+  .monster-illustration-list{grid-template-columns:1fr}
+  .monster-illustration-row{border-right:0}
+}
+
+
+/* v13.9 combined Item Codex + Monster Illustration progress */
+.progress-panel-title{border-bottom:1px solid var(--line-soft)}
+.progress-section{border-bottom:1px solid var(--line-soft)}
+.progress-section:last-of-type{border-bottom:0}
+.progress-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:var(--panel-2)}
+.progress-section-head strong{display:block;font-size:12px;color:var(--text)}
+.progress-section-head span:not(.progress-total){display:block;margin-top:2px;color:var(--muted);font-size:10.5px}
+.progress-section-head .progress-total{font-size:11px;color:var(--muted);font-weight:700;text-align:right;white-space:nowrap}
+.monster-progress-section .progress-left.complete{color:var(--accent)}
+.split-progress-actions{justify-content:space-between;gap:8px;flex-wrap:wrap}
+.split-progress-actions .small-button{flex:1;min-width:120px}
+.floating-progress-panel .dungeon-progress-table-wrap{max-height:none}
+@media(max-width:620px){
+  .progress-section-head{align-items:flex-start;flex-direction:column;gap:4px}
+  .progress-section-head .progress-total{text-align:left}
+}
+
+
+/* v13.9.1: reserve checkbox space on every dungeon item row so names align */
+.item-check-spacer{
+  flex:0 0 15px;
+  width:15px;
+  height:15px;
+  margin:1px 5px 0 0;
+  visibility:hidden;
+}
+
+
+/* v13.9.2: unify dungeon summary hierarchy */
+.monster-summary{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:6px 9px;border-top:1px solid var(--line-soft);background:var(--panel-3);
+  color:var(--muted);font-size:10.5px;
+}
+.monster-summary span{white-space:nowrap}
+.monster-summary strong{
+  color:#aab7ca;font-size:10px;font-weight:800;letter-spacing:.025em;text-transform:uppercase;
+}
+.monster-summary .summary-progress{margin-left:auto}
+html[data-theme="light"] .monster-summary{background:color-mix(in srgb,var(--panel-3) 92%,transparent)}
+
+/* Expanded Monster Illustration header matches Equipment/Event/ETC/Other headings */
+.monster-illustration-head{
+  min-height:27px;padding:5px 7px;background:var(--panel-3);border-bottom:1px solid var(--line-soft);
+}
+.monster-illustration-head strong{
+  color:#aab7ca;font-size:10.5px;font-weight:800;letter-spacing:.045em;text-transform:uppercase;
+}
+.monster-progress{font-size:10.5px;color:var(--muted);font-weight:700}
+
+/* Title row remains visible in both summary and expanded states. */
+.dungeon-card .card-note{display:block}
+
+/* Progress popup: visually distinct Monster Illustration and Item Codex sections. */
+.progress-section-head{border-left:4px solid transparent;padding-left:12px}
+.monster-progress-section .progress-section-head{
+  border-left-color:var(--accent);
+  background:color-mix(in srgb,var(--panel-2) 90%,var(--accent) 10%);
+}
+.monster-progress-section .progress-section-head strong{color:var(--accent);font-size:13px}
+.codex-progress-section .progress-section-head{
+  border-left-color:var(--codex);
+  background:color-mix(in srgb,var(--panel-2) 90%,var(--codex) 10%);
+}
+.codex-progress-section .progress-section-head strong{color:var(--codex);font-size:13px}
+
+
+/* v13.9.3 Illustration Book Progress refinements */
+.codex-progress-section .codex-disclaimer{
+  background:color-mix(in srgb,var(--panel-3) 86%,var(--codex) 14%);
+  border-bottom-color:color-mix(in srgb,var(--line-soft) 72%,var(--codex) 28%);
+  color:color-mix(in srgb,var(--muted) 76%,var(--codex) 24%);
+}
+.codex-progress-section .codex-disclaimer strong{
+  color:color-mix(in srgb,var(--text) 82%,var(--codex) 18%);
+}
+.codex-progress-section .codex-disclaimer a,
+.codex-progress-section .codex-disclaimer a strong,
+.codex-progress-section .codex-disclaimer a em,
+.codex-progress-section .codex-disclaimer a strong em{
+  color:var(--codex) !important;
+}
+.split-progress-actions{
+  gap:8px;
+}
+.split-progress-actions .small-button{
+  height:30px;
+  padding-inline:10px;
+  font-size:11px;
+}
+
+
+/* v13.9.4 per-dungeon overall completion */
+.dungeon-overall-progress{
+  display:grid;grid-template-columns:auto minmax(70px,1fr) auto;align-items:center;gap:8px;
+  padding:5px 8px;border-top:1px solid var(--line-soft);background:var(--panel-3);
+  color:var(--muted);font-size:10.5px;
+}
+.dungeon-overall-progress > span:first-child strong{
+  color:#aab7ca;font-size:10px;letter-spacing:.035em;text-transform:uppercase;
+}
+.overall-progress-track{height:4px;border-radius:999px;overflow:hidden;background:color-mix(in srgb,var(--line) 72%,transparent);}
+.overall-progress-track i{display:block;height:100%;border-radius:inherit;background:var(--accent);transition:width .18s ease;}
+.overall-progress-count{white-space:nowrap;font-weight:700;color:var(--muted);}
+.overall-progress-count strong{font-size:10px;letter-spacing:.025em;text-transform:uppercase;color:#aab7ca;}
+html[data-theme="light"] .dungeon-overall-progress{background:color-mix(in srgb,var(--panel-3) 92%,transparent);}
+@media(max-width:620px){
+  .dungeon-overall-progress{grid-template-columns:auto 1fr auto;gap:6px;}
+  .overall-progress-track{min-width:48px;}
+}
+
+
+/* v13.9.4.2 Tutorial / Disclaimer landing page */
+.tutorial-page{min-height:100vh}
+.tutorial-shell{width:min(1080px,calc(100% - 28px));margin:0 auto;padding:44px 0 40px}
+.tutorial-hero{padding:34px 36px;border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--panel) 91%,transparent);-webkit-backdrop-filter:blur(18px) saturate(120%);backdrop-filter:blur(18px) saturate(120%);box-shadow:0 18px 50px rgba(0,0,0,.14)}
+.tutorial-kicker{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.15em}
+.tutorial-hero h1{margin:7px 0 8px;font-size:clamp(28px,5vw,44px);line-height:1.05}
+.tutorial-hero p{max-width:720px;margin:0;color:var(--muted);font-size:15px}
+.tutorial-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.tutorial-primary,.tutorial-secondary{display:inline-flex;align-items:center;min-height:38px;padding:0 15px;border-radius:8px;text-decoration:none;font-weight:800}
+.tutorial-primary{border:1px solid var(--accent);background:var(--accent);color:#fff}
+.tutorial-secondary{border:1px solid var(--line);background:var(--panel-2);color:var(--text)}
+.tutorial-primary:hover{filter:brightness(1.05)}.tutorial-secondary:hover{border-color:var(--accent)}
+.tutorial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.tutorial-card{padding:20px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--panel) 92%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.tutorial-step{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.1em}
+.tutorial-card h2{margin:5px 0 6px;font-size:16px}.tutorial-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.tutorial-disclaimer{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin-top:14px;padding:18px 20px;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:12px;background:color-mix(in srgb,var(--panel) 87%,var(--accent) 13%);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.tutorial-disclaimer-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:#fff;font-weight:900}
+.tutorial-disclaimer h2{margin:1px 0 7px;font-size:16px}.tutorial-disclaimer p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5}.tutorial-disclaimer a{color:var(--accent)}
+.tutorial-tip{margin-top:12px;padding:11px 14px;border:1px solid var(--line);border-radius:9px;background:color-mix(in srgb,var(--panel) 90%,transparent);color:var(--muted);font-size:12px}
+@media(max-width:720px){.tutorial-shell{padding-top:18px}.tutorial-hero{padding:24px 20px}.tutorial-grid{grid-template-columns:1fr}.tutorial-disclaimer{grid-template-columns:1fr}}
