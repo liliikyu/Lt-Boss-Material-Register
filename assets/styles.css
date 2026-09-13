@@ -1352,159 +1352,139 @@ html[data-theme="light"] .field-card .monster-summary{background:color-mix(in sr
 .conquest-preview-source a:hover{background:color-mix(in srgb,var(--panel-2) 86%,var(--accent) 14%);}
 @media (max-width:760px){.conquest-preview-hero,.conquest-preview-content{padding:16px}.conquest-preview-hero h1{font-size:22px}}
 
-
-/* v13.9.4.32 — compact collapsed Dungeon cards + final summary color hierarchy */
-:root{
-  --dungeon-heading-muted:#aab7ca;
-  --dungeon-summary-emphasis:#dbe5f2;
-}
-html[data-theme="light"]{
-  --dungeon-heading-muted:#95a3b8;
-  --dungeon-summary-emphasis:#607086;
-}
-
-/* Collapsed Dungeon cards mirror compact Field cards: header + Overall Progress only. */
-.dungeon-card:not(.expanded) .monster-summary,
-.dungeon-card:not(.expanded) .dungeon-summary,
-.dungeon-card:not(.expanded) .title-summary-row,
-.dungeon-card:not(.expanded) .dungeon-conquest-placeholder{
-  display:none !important;
-}
-
-/* OVERALL PROGRESS is intentionally stronger than the other structural headings. */
-.dungeon-overall-progress > span:first-child strong,
-.overall-progress-count,
-.overall-progress-count strong{
-  color:var(--dungeon-summary-emphasis) !important;
-  opacity:1 !important;
-}
-
-/* Structural headings return to muted gray. */
+/* v13.9.4.32-style patch — unify Dungeon structural heading colors */
+.dungeon-summary strong,
+.monster-summary strong,
 .monster-illustration-head strong,
 .item-column-head,
 .title-summary-row strong,
-.dungeon-conquest-placeholder-head,
-.dungeon-conquest-placeholder-head strong,
+.dungeon-conquest-placeholder-head strong {
+  color: #aab7ca !important;
+}
+/* v13.9.4.32 final heading consistency patch */
+.dungeon-overall-progress > span:first-child strong,
+.dungeon-summary strong,
 .monster-summary strong,
-.dungeon-summary strong{
-  color:var(--dungeon-heading-muted) !important;
+.monster-illustration-head strong,
+.item-column-head,
+.title-summary-row strong,
+.dungeon-conquest-placeholder-head strong {
+  color:#607086 !important;
+  font-size:10.5px !important;
+  font-weight:800 !important;
+  letter-spacing:.035em !important;
+  text-transform:uppercase !important;
   opacity:1 !important;
 }
 
-/* DONE + numeric progress values stay stronger. */
-.monster-progress,
+/* Dark theme keeps the same hierarchy with the darker-theme neutral. */
+html:not([data-theme="light"]) .dungeon-overall-progress > span:first-child strong,
+html:not([data-theme="light"]) .dungeon-summary strong,
+html:not([data-theme="light"]) .monster-summary strong,
+html:not([data-theme="light"]) .monster-illustration-head strong,
+html:not([data-theme="light"]) .item-column-head,
+html:not([data-theme="light"]) .title-summary-row strong,
+html:not([data-theme="light"]) .dungeon-conquest-placeholder-head strong {
+  color:#aab7ca !important;
+}
+
+/* v13.9.4.32 — unify Dungeon summary numbers and DONE counters with heading labels */
+html[data-theme="light"] .dungeon-overall-progress,
+html[data-theme="light"] .dungeon-overall-progress .overall-progress-count,
+html[data-theme="light"] .dungeon-overall-progress .overall-progress-count strong,
+html[data-theme="light"] .dungeon-summary,
+html[data-theme="light"] .dungeon-summary span,
+html[data-theme="light"] .dungeon-summary .summary-progress,
+html[data-theme="light"] .monster-summary,
+html[data-theme="light"] .monster-summary span,
+html[data-theme="light"] .monster-summary .summary-progress,
+html[data-theme="light"] .monster-summary-progress,
+html[data-theme="light"] .monster-progress {
+  color:#607086 !important;
+  opacity:1 !important;
+}
+
+html:not([data-theme="light"]) .dungeon-overall-progress,
+html:not([data-theme="light"]) .dungeon-overall-progress .overall-progress-count,
+html:not([data-theme="light"]) .dungeon-overall-progress .overall-progress-count strong,
+html:not([data-theme="light"]) .dungeon-summary,
+html:not([data-theme="light"]) .dungeon-summary span,
+html:not([data-theme="light"]) .dungeon-summary .summary-progress,
+html:not([data-theme="light"]) .monster-summary,
+html:not([data-theme="light"]) .monster-summary span,
+html:not([data-theme="light"]) .monster-summary .summary-progress,
+html:not([data-theme="light"]) .monster-summary-progress,
+html:not([data-theme="light"]) .monster-progress {
+  color:#aab7ca !important;
+  opacity:1 !important;
+}
+
+/* v13.9.4.32b — make every Dungeon summary label/count/title use one neutral color */
+html[data-theme="light"]{
+  --dungeon-summary-text:#607086;
+}
+html:not([data-theme="light"]){
+  --dungeon-summary-text:#aab7ca;
+}
+
+/* Overall Progress: label + DONE + fraction */
+.dungeon-overall-progress,
+.dungeon-overall-progress > span,
+.dungeon-overall-progress strong,
+.dungeon-overall-progress .overall-progress-count,
+.dungeon-overall-progress .overall-progress-count strong {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
+}
+
+/* Monster Illustration summary: label + total + DONE + fraction */
+.monster-summary,
+.monster-summary > span,
+.monster-summary strong,
 .monster-summary .summary-progress,
-.monster-summary .summary-progress strong,
-.dungeon-summary .summary-progress,
-.dungeon-summary .summary-progress strong{
-  color:var(--dungeon-summary-emphasis) !important;
+.monster-summary-progress,
+.monster-progress {
+  color:var(--dungeon-summary-text) !important;
   opacity:1 !important;
 }
 
-/* If summary rows are shown by script/state, their counts are strong while labels stay muted. */
-.monster-summary > span:not(.summary-progress),
-.dungeon-summary > span:not(.summary-progress),
-.title-summary-row > span:first-child{
-  color:var(--dungeon-summary-emphasis) !important;
-}
-.monster-summary > span:not(.summary-progress) strong,
-.dungeon-summary > span:not(.summary-progress) strong,
-.title-summary-row > span:first-child strong{
-  color:var(--dungeon-heading-muted) !important;
-}
-.title-summary-row .title-summary-names{
-  color:var(--dungeon-heading-muted) !important;
+/* Item Codex summary: Equipment/Event/ETC/Other labels + all numbers + DONE */
+.dungeon-summary,
+.dungeon-summary > span,
+.dungeon-summary span,
+.dungeon-summary strong,
+.dungeon-summary .summary-progress,
+.dungeon-summary .summary-progress strong {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
 }
 
-
-/* v13.9.4.33 — compact Dungeon header: entries inline with dungeon name */
-.dungeon-title-wrap{min-width:0;display:flex;align-items:center;}
-.dungeon-name-row{min-width:0;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;}
-.dungeon-name-row .dungeon-name{min-width:0;}
-.dungeon-meta-inline{color:var(--muted);font-size:11.5px;font-weight:400;line-height:1.2;white-space:nowrap;}
-/* Legacy second-line meta is no longer rendered; keep hidden as a safety net. */
-.dungeon-head .dungeon-meta{display:none!important;}
-
-
-/* v13.9.4.34 — Dungeon header mirrors Field badge metadata layout */
-.dungeon-title-wrap{
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:center;
-}
-.dungeon-name-row{
-  min-width:0;
-  display:flex;
-  align-items:baseline;
-  gap:7px;
-  flex-wrap:wrap;
-}
-.dungeon-meta-inline{
-  color:var(--muted);
-  font-size:11.5px;
-  font-weight:400;
-  line-height:1.2;
-  white-space:nowrap;
-}
-.dungeon-card-submeta{
-  margin-top:2px;
-  color:var(--muted);
-  font-size:11.5px;
-  line-height:1.2;
-  font-weight:400;
+/* Title summary: TITLE + count + titlebook names */
+.title-summary-row,
+.title-summary-row > span,
+.title-summary-row span,
+.title-summary-row strong,
+.title-summary-row .title-summary-label,
+.title-summary-row .title-summary-names,
+.title-summary-row .summary-progress {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
 }
 
-/* v13.9.4.35 — Dungeon Unique Loot section */
-.unique-loot-section{
-  border-bottom:1px solid var(--line-soft);
-  background:var(--panel);
+/* Expanded structural headings use the same neutral too. */
+.monster-illustration-head,
+.monster-illustration-head strong,
+.item-column-head,
+.dungeon-conquest-placeholder-head,
+.dungeon-conquest-placeholder-head strong {
+  color:var(--dungeon-summary-text) !important;
+  opacity:1 !important;
 }
-.unique-loot-head{
-  min-height:27px;
-  padding:5px 7px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  background:var(--panel-3);
-  border-bottom:1px solid var(--line-soft);
-  color:var(--muted);
-}
-.unique-loot-head strong{
-  color:var(--muted);
-  font-size:10.5px;
-  font-weight:800;
-  letter-spacing:.045em;
-  text-transform:uppercase;
-}
-.unique-loot-count{
-  color:var(--muted);
-  font-size:10.5px;
-  font-weight:700;
-  white-space:nowrap;
-}
-.unique-loot-list{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-}
-.unique-loot-row{
-  min-width:0;
-  padding:5px 8px;
-  border-bottom:1px solid var(--line-soft);
-  border-right:1px solid var(--line-soft);
-  color:var(--text);
-  font-size:11.5px;
-  line-height:1.25;
-  overflow-wrap:anywhere;
-}
-.unique-loot-row:nth-child(2n){border-right:0;}
-.unique-loot-row:nth-last-child(-n+2){border-bottom:0;}
-.unique-loot-row:only-child{grid-column:1/-1;border-right:0;border-bottom:0;}
-@media(max-width:620px){
-  .unique-loot-list{grid-template-columns:1fr;}
-  .unique-loot-row{border-right:0;}
-  .unique-loot-row:nth-last-child(-n+2){border-bottom:1px solid var(--line-soft);}
-  .unique-loot-row:last-child{border-bottom:0;}
+
+/* v13.9.4.36a — Unique Loot text matches Monster Illustration item size */
+.unique-loot-items,
+.unique-loot-row .unique-loot-items,
+.dungeon-unique-loot-items {
+  font-size:11.5px !important;
+  line-height:1.25 !important;
 }
