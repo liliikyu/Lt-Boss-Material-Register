@@ -1,0 +1,42 @@
+name: Sync Dungeon Unique Loot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/sync_unique_loot.py"
+      - ".github/workflows/sync-unique-loot.yml"
+  schedule:
+    - cron: "57 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh Dungeon Unique Loot from Official La Tale Wiki
+        run: python scripts/sync_unique_loot.py
+
+      - name: Commit changed Dungeon Unique Loot data
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/dungeon-unique-loot.js; then
+            echo "No Dungeon Unique Loot changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/dungeon-unique-loot.js
+          git commit -m "Sync Dungeon Unique Loot from La Tale Wiki"
+          git push
